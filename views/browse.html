@@ -1,0 +1,53 @@
+         <ol class="breadcrumb">
+          <li><a ui-sref="app">Home</a></li>
+          <li class="active"><a ui-sref="app.browse">Browse products</a></li>
+        </ol>
+
+
+        <!-- Page Content -->
+        <div id="page-content-wrapper" ng-controller="productController">
+            <div class="container-fluid">
+                <div class="row">
+                    <h3>Product List</h3>
+                    <p> Product Number
+                        <span ng-show="productNumber" class="badge">{{productNumber}}</span>
+                    </p>
+                    <table class="table table-bordered">
+                      <tr>
+                        <th> Brand</th> 
+                        <th> Model</th> 
+                        <th> Serial</th>
+                        <th> Owner</th>
+                        <th> Purchaser</th>
+                        <th> Contract No</th>
+                        <th> Part No</th> 
+                        <th> Description</th>
+                        <th> ContractEnd</th>
+                        <th> Function </th>
+                        <th> Image</th>
+                      </tr>
+                      <tr ng-repeat = "(key,product) in products">
+                        <th>{{product.productbrand}}</th> 
+                        <th>{{product.productmodel}}</th>
+                        <th>{{product.productserial}}</th>
+                        <th>{{product.productowner}}</th>
+                        <th>{{product.productpurchaser}}</th>
+                        <th>{{product.productcontract}}</th>
+                        <th>{{product.productpart}}</th> 
+                        <th>{{product.productdescription}}</th>
+                        <th>{{product.contractenddate | date:"dd-MM-yy"}}</th>
+                        <th>
+                            <a ui-sref="app.updateimage({id: product.$id})" type="button" class="btn btn-default">
+                            <span class="glyphicon glyphicon-picture" aria-hidden="true"></span>
+                            </a>
+                        </th>
+                        <th ng-repeat = "(key,i) in product.images">
+                            <img class="productimage" src={{i.imageUrl}}>
+                        </th>
+                      </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <!-- /#page-content-wrapper -->
+

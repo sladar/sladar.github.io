@@ -1,0 +1,170 @@
+        <ol class="breadcrumb">
+          <li><a ui-sref="app">Home</a></li>
+          <li class="active"><a ui-sref="app.search">Update & delete</a></li>
+        </ol>
+
+        <!-- Page Content -->
+        <div id="page-content-wrapper" ng-controller="productController">
+            <div class="container-fluid">
+                <div class="row">
+                    <h3>Find & Update</h3>
+                    <hr>
+                    <form class="form-horizontal" name="productForm">
+
+                     <div class="form-group">
+                        <label for="washroom" class="col-sm-2 control-label"> Serial Number</label>
+                        <div class="col-sm-8">
+                            <div class="input-group">
+                                <span class="input-group-addon glyphicon glyphicon-search" id="basic-addon1">
+                                </span>
+                                <input type="text" class="form-control" placeholder="Search for product" ng-model="productSerialQuery" ng-required="true">
+                            </div>
+                        </div>
+                      </div>
+
+                      <div class="form-group">
+                        <label for="washroom" class="col-sm-2 control-label"> Brand</label>
+                        <div class="col-sm-8">
+                            <div class="input-group">
+                                <span class="input-group-addon glyphicon glyphicon-search" id="basic-addon1">
+                                </span>
+                                <select class="form-control" id="productbrand" name = "productbrand" ng-model="productBrandQuery" ng-options="b.value as b.label for b in brand">
+                                    <option value="">No brand selected</option>
+                                </select>
+                            </div>
+                        </div>
+                      </div>
+
+                      <div class="form-group">
+                        <label for="washroom" class="col-sm-2 control-label"> Model</label>
+                        <div class="col-sm-8">
+                            <div class="input-group">
+                                <span class="input-group-addon glyphicon glyphicon-search" id="basic-addon1">
+                                </span>
+                                <input type="text" class="form-control" placeholder="Search for product Model" ng-model="productModelQuery" ng-required="true">
+                            </div>
+                        </div>
+                      </div>
+
+                      <div class="form-group">
+                        <label for="washroom" class="col-sm-2 control-label"> Contract</label>
+                        <div class="col-sm-8">
+                            <div class="input-group">
+                                <span class="input-group-addon glyphicon glyphicon-search" id="basic-addon1">
+                                </span>
+                                <input type="text" class="form-control" placeholder="Search for product contract number" ng-model="productContractQuery" ng-required="true">
+                            </div>
+                        </div>
+                      </div>
+                      
+                    </form>
+                    <hr>
+                </div>
+            </div>
+
+            <div class="container-fluid">
+                <div class="row">
+                    <h3>Contract renewal & Group update other fields</h3>
+                    <hr>
+                    <form class="form-horizontal" ng-submit="groupUpdate()" name="contractupdateForm">
+
+                     <div class="form-group">
+                        <label for="washroom" class="col-sm-2 control-label"> Contract Number</label>
+                        <div class="col-sm-8">
+                            <div class="input-group">
+                                <input type="text" class="form-control" placeholder="Enter contract number so related fileds could be group updated" ng-model="contractupdate" ng-required="true">
+                            </div>
+                        </div>
+                      </div>
+
+                      <div class="form-group">
+                        <label for="washroom" class="col-sm-2 control-label"> Fields Category</label>
+                        <div class="col-sm-8">
+                            <div class="input-group">
+                                <select class="form-control" id="productfield" name = "productfield" ng-model="fieldupdate" ng-options="f.value as f.label for f in fields">
+                                    <option value="">No filed selected</option>
+                                </select>
+                            </div>
+                        </div>
+                      </div>
+
+                      <div class="form-group">
+                        <label for="washroom" class="col-sm-2 control-label"> Updated value</label>
+                        <div class="col-sm-8">
+                            <div class="input-group">
+                                <input type="text" class="form-control" placeholder="Enter value supposed to be changed" ng-model="valueupdate" ng-required="true">
+                            </div>
+                        </div>
+                      </div>
+
+                      <div class="form-group">
+                        <div class="col-sm-offset-2">
+                          <button type="submit" class="btn btn-default" >
+                               Change group value
+                          </button>
+                        </div>
+                      </div>
+                    </form>
+                    <hr>
+                </div>
+            </div>
+
+            <hr>
+            <div class="table-responsive">
+                <table class="table">
+                      <tr>
+                        <th> Function</th>
+                        <th> Brand</th> 
+                        <th> Model</th>
+                        <th> Serial</th>
+                        <th> Contract No</th>
+                        <th> Part No</th>
+                        <th> Purchaser</th>
+                        <th> Owner</th>
+                        <th> Description</th>
+                        <th> ContractEnd</th>
+                        <th> Image </th>
+                      </tr>
+                      <tr ng-repeat = "product in products | filter:{productserial: productSerialQuery,productmodel: productModelQuery, productbrand:productBrandQuery,productcontract:productContractQuery}">
+                        <th>
+                            <button  type="button" class="btn btn-default" ng-click="deleteProduct(key)">
+                             <span class="glyphicon glyphicon-trash"></span>
+                            </button>
+                        </th>
+                        <th>
+                         <input type="text" ng-model="product.productbrand" ng-change="products.$save(product)"/>
+                        </th> 
+                        <th>
+                        <input type="text" ng-model="product.productmodel" ng-change="products.$save(product)"/>
+                        </th> 
+                        <th>
+                        <input type="text" ng-model="product.productserial" ng-change="products.$save(product)"/>
+                        </th>
+                        <th>
+                        <input type="text" ng-model="product.productcontract" ng-change="products.$save(product)"/>
+                        </th>
+                        <th>
+                        <input type="text" ng-model="product.productpart" ng-change="products.$save(product)"/>
+                        </th>
+                        <th>
+                        <input type="text" ng-model="product.productpurchaser" ng-change="products.$save(product)"/>
+                        </th>
+                        <th>
+                        <input type="text" ng-model="product.productowner" ng-change="products.$save(product)"/>
+                        </th>
+                        <th>
+                        <input type="text" ng-model="product.productdescription" ng-change="products.$save(product)"/>
+                        </th>
+                        <th>
+                        <input type="text" ng-model="product.contractenddate" ng-change="products.$save(product)"/>
+                        </th>
+                        <th ng-repeat = "(key,i) in product.images">
+                            <img class="productimage" src={{i.imageUrl}}>
+                        </th>
+                      </tr>
+                </table>
+            </div>
+        </div>
+        <!-- /#page-content-wrapper -->
+
+ 

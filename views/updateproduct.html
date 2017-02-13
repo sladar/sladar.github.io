@@ -1,0 +1,174 @@
+      <ol class="breadcrumb">
+        <li><a ui-sref="app">Home</a></li>
+        <li><a ui-sref="app.delete">update & delete products</a></li>
+        <li class="active">update one product</li>
+      </ol>
+
+      <div class="alert alert-success" role="alert" ng-show="updateStatus">
+          <p>Congrats!</p>
+          <div>
+              <p ng-model="updateMessage">{{updateMessage}}</p>
+          </div>
+      </div>
+      <!-- Page Content -->
+        <div id="page-content-wrapp" ng-controller="updateController">
+            <div class="container-fluid">
+                <div class="row">
+                    <h3>Update product data</h3>
+
+                    <hr>
+
+                    <h4>Original data<h4>
+                    <table class="table table-bordered">
+                      <tr>
+                        <th> Brand</th> 
+                        <th> Model</th>
+                        <th> Serial</th>
+                        <th> Reference</th>
+                        <th> Owner</th>
+                        <th> Purchaser</th>
+                        <th> Contract No</th>
+                        <th> Part No</th> 
+                        <th> Description</th>
+                        <th> ContractStart</th>
+                        <th> ContractEnd</th>
+                      </tr>
+                      <tr ng-model = "product">
+                        <th>{{product.productbrand}}</th> 
+                        <th>{{product.productmodel}}</th> 
+                        <th>{{product.productserial}}</th>
+                        <th>{{product.productrefno}}</th>
+                        <th>{{product.productowner}}</th>
+                        <th>{{product.productpurchaser}}</th>
+                        <th>{{product.productcontract}}</th>
+                        <th>{{product.productpart}}</th> 
+                        <th>{{product.productdescription}}</th>
+                        <th>{{product.contractbegindate}}</th>
+                        <th>{{product.contractenddate}}</th>
+                      </tr>
+                    </table>
+
+                    <hr>
+
+                    <h4>Modification</h4>
+                    <form class="form-horizontal" ng-submit = "updateProduct()" data-toggle="validator" name="productUpdateForm">
+                      <div class="form-group" ng-class="{'has-error' : productUpdateForm.productmodelupdate.$error.required && !productUpdateForm.productmodelupdate.$pristine}">
+                        <label for="pn" class="col-sm-2 control-label"> Model
+                        </label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" id="productmodelupdate" name="productmodelupdate" ng-model="productupdate.productmodelupdate" placeholder="Product Model" required>
+                            <span ng-show="productUpdateForm.productmodelupdate.$error.required && !productUpdateForm.productmodelupdate.$pristine" class="help-block">Product Model could not be null</span>
+                        </div>
+                      </div>
+
+                      <div class="form-group" ng-class="{'has-error' : productUpdateForm.productbrandupdate.$error.required && !productUpdateForm.productbrandupdate.$pristine}">
+                        <label for="pn" class="col-sm-2 control-label"> Brand
+                        </label>
+                        <div class="col-sm-8">
+                            <input type="text" id="productbrandupdate" name="productbrandupdate" class="form-control" ng-model="productupdate.productbrandupdate" placeholder="Please enter your product brand" required>
+                            <span ng-show="productUpdateForm.productbrandupdate.$error.required && !productUpdateForm.productbrandupdate.$pristine" class="help-block">Product Brand could not be null</span>
+                        </div>
+                      </div>
+
+                      <div class="form-group" ng-class="{'has-error' : productUpdateForm.productserialupdate.$error.required && !productUpdateForm.productserialupdate.$pristine}">
+                        <label for="pn" class="col-sm-2 control-label"> Serial Number
+                        </label>
+                        <div class="col-sm-8">
+                            <input type="text" id="productserialupdate" name="productserialupdate" ng-model="productupdate.productserialupdate" class="form-control" placeholder="Please enter your product serial number" required>
+                            <span ng-show="productUpdateForm.productserialupdate.$error.required && !productUpdateForm.productserialupdate.$pristine" class="help-block">Product serial no could not be null
+                            </span>
+                        </div>
+                      </div>
+
+                      <div class="form-group" ng-class="{'has-error' : productUpdateForm.productrefupdate.$error.required 
+                      && !productUpdateForm.productrefupdate.$pristine}">
+                        <label for="pn" class="col-sm-2 control-label"> Reference No*
+                        </label>
+                        <div class="col-sm-8">
+                            <input type="text" id="productrefupdate" name="productrefupdate" ng-model="productupdate.productrefupdate" class="form-control" placeholder="Please enter your product reference number" required>
+                             <span ng-show="productUpdateForm.productrefupdate.$error.required && !productUpdateForm.productrefupdate.$pristine" class="help-block">Product Reference no could not be null</span>
+                        </div>
+                      </div>
+
+                      <div class="form-group" ng-class="{'has-error' : productUpdateForm.productownerupdate.$error.required && !productUpdateForm.productownerupdate.$pristine}">
+                        <label for="pn" class="col-sm-2 control-label"> Owner
+                        </label>
+                        <div class="col-sm-8">
+                            <input type="text" id="productownerupdate" name="productownerupdate" class="form-control" ng-model="productupdate.productownerupdate" placeholder="Please enter product owner" required>
+                            <span ng-show="productUpdateForm.productownerupdate.$error.required && !productUpdateForm.productownerupdate.$pristine" class="help-block">Product Owner could not be null</span>
+                        </div>
+                      </div>
+
+                      <div class="form-group" ng-class="{'has-error' : productUpdateForm.productpurchaserupdate.$error.required && !productUpdateForm.productpurchaserupdate.$pristine}">
+                        <label for="pn" class="col-sm-2 control-label"> Purchaser
+                        </label>
+                        <div class="col-sm-8">
+                            <input type="text" id="productpurchaserupdate" name="productpurchaserupdate" class="form-control" ng-model="productupdate.productpurchaserupdate" placeholder="Please enter product purchaser"required>
+                            <span ng-show="productUpdateForm.productpurchaserupdate.$error.required && !productUpdateForm.productpurchaserupdate.$pristine" class="help-block">Product Purchaser could not be null</span>
+                        </div>
+                      </div>
+
+                      
+                      
+                      <div class="form-group" ng-class="{'has-error' : productUpdateForm.productcontractupdate.$error.required 
+                      && !productUpdateForm.productcontractupdate.$pristine}">
+                            <label for="description" class="col-sm-2 control-label"> ContractNo *
+                            </label>
+                            <div class="col-sm-8">
+                                <input type="text" id="productcontractupdate" name="productcontractupdate" class="form-control" ng-model="productupdate.productcontractupdate" placeholder="Please enter your product contract number" required>
+                                <span ng-show="productUpdateForm.productcontractupdate.$error.required && !productUpdateForm.productcontractupdate.$pristine" class="help-block">Product contract no could not be null</span>
+                            </div>
+                      </div>
+                      <div class="form-group"  ng-class="{'has-error' : productUpdateForm.productpartupdate.$error.required 
+                      && !productUpdateForm.productpartupdate.$pristine}">
+                            <label for="description" class="col-sm-2 control-label"> Part Number
+                            </label>
+                            <div class="col-sm-8">
+                                <input type="text" id="productpartupdate" name="productpartupdate" ng-model="productupdate.productpartupdate" class="form-control" placeholder="Please enter your product part number" ng-model="productpart" required>
+                                <span ng-show="productUpdateForm.productpartupdate.$error.required && !productUpdateForm.productpartupdate.$pristine" class="help-block">Product part no could not be null</span>
+                            </div>
+                      </div>
+
+                      <div class="form-group"  ng-class="{'has-error' : productUpdateForm.productdescriptionupdate.$error.required 
+                      && !productUpdateForm.productdescriptionupdate.$pristine}">
+                            <label for="description" class="col-sm-2 control-label"> Description
+                            </label>
+                            <div class="col-sm-8">
+                                <input type="text" id="productdescriptionupdate" name="productdescriptionupdate" ng-model="productupdate.productdescriptionupdate" class="form-control" placeholder="Please enter your product description" required>
+                                <span ng-show="productUpdateForm.productdescriptionupdate.$error.required && !productUpdateForm.productdescriptionupdate.$pristine" class="help-block">Product description could not be null</span>
+                            </div>
+                            
+                        </div>
+
+                      <div class="form-group" ng-class="{'has-error' : productUpdateForm.productbegindateupdate.$error.required 
+                      && !productUpdateForm.productbegindateupdate.$pristine}">
+                            <label for="description" class="col-sm-2 control-label">Contract Begin Date
+                            </label>
+                            <div class="col-sm-8">
+                                <input  class="form-control" id="productbegindateupdate" name="productbegindateupdate" ng-model="productupdate.productbegindateupdate" placeholder="Please enter your contract begin date" required>
+                                <span ng-show="productUpdateForm.productbegindateupdate.$error.required && !productUpdateForm.productbegindateupdate.$pristine" class="help-block">Product contract begin date could not be null</span>
+                            </div>
+                            
+                      </div>
+                      <div class="form-group" ng-class="{'has-error' : productUpdateForm.productenddateupdate.$error.required 
+                      && !productUpdateForm.productenddateupdate.$pristine}">
+                            <label for="description" class="col-sm-2 control-label">Contract End Date
+                            </label>
+                            <div class="col-sm-8">
+                                <input type="text" id="productenddateupdate" name="productenddateupdate" ng-model="productupdate.productenddateupdate" class="form-control" placeholder="Please enter your contract end date" required>
+                                <span ng-show="productUpdateForm.productenddateupdate.$error.required && !productUpdateForm.productenddateupdate.$pristine" class="help-block">Product contract end date no could not be null
+                                </span>
+                            </div>
+                      </div>
+                      
+                        <div class="form-group">
+                            <div class="col-sm-offset-2 col-sm-10">
+                                <button type="submit" class="btn btn-default" ng-disabled="productUpdateForm.$invalid">Update</button>
+                                <a ui-sref="app.browse" class="btn btn-default">Back Browsing</a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!-- /#page-content-wrapper -->

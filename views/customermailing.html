@@ -1,0 +1,126 @@
+<!-- Page Content -->
+        <div id="page-content-wrapper">
+            <div class="container-fluid">
+                <div class="row">
+                    <h3>Customer mailing information</h3>
+
+                    <hr>
+                    
+                    <form class="form-horizontal" ng-controller="productController" ng-submit = "InsertProduct()" name="productForm" novalidate>
+                      <div class="form-group" ng-class="{'has-error' : productForm.productmodel.$error.required && !productForm.productmodel.$pristine}">
+                        <label for="pn" class="col-sm-2 control-label">Product Model</label>
+                        <div class="col-sm-8">
+                            <input type="text" id="productmodel" name = "productmodel" class="form-control" placeholder="Prodcut Model Name" ng-model="productModel" ng-required="true">
+                            <span ng-show="productForm.productmodel.$error.required && !productForm.productmodel.$pristine" class="help-block">Product Model could not be null
+                            </span>
+                        </div>
+                        
+                      </div>
+
+                      <div class="form-group" ng-class="{'has-error' : productForm.productbrand.$error.required && !productForm.productbrand.$pristine}">
+                        <label for="pn" class="col-sm-2 control-label">Product Brand</label>
+                        <div class="col-sm-8">
+                            <input type="text" id="productbrand" name = "productbrand"class="form-control" placeholder="Please enter your product brand" ng-model="productBrand" ng-required="true">
+                            <span ng-show="productForm.productbrand.$error.required && !productForm.productbrand.$pristine" class="help-block">Product Brand could not be null
+                            </span>
+                        </div>
+                        
+                      </div>
+
+                      <div class="form-group" ng-class="{'has-error' : productForm.productpurchaser.$error.required && !productForm.productpurchaser.$pristine}">
+                        <label for="pn" class="col-sm-2 control-label">Product Purchaser</label>
+                        <div class="col-sm-8">
+                            <input type="text" id="productpurchaser" name = "productpurchaser" class="form-control" placeholder="Please enter product purchaser" ng-model="productPurchaser" ng-required="true">
+                            <span ng-show="productForm.productpurchaser.$error.required && !productForm.productpurchaser.$pristine" class="help-block">Product Purchaser could not be null
+                            </span>
+                        </div>
+                        
+                      </div>
+
+                      <div class="form-group" ng-class="{'has-error' : productForm.productowner.$error.required && !productForm.productowner.$pristine}">
+                        <label for="pn" class="col-sm-2 control-label">Product Owner</label>
+                        <div class="col-sm-8">
+                            <input type="text" id="productowner" name = "productowner" class="form-control" placeholder="Please enter product owner" ng-model="productOwner" ng-required="true">
+                            <span ng-show="productForm.productowner.$error.required && !productForm.productowner.$pristine" class="help-block">Product Owner could not be null
+                            </span>
+                        </div>
+                        
+                      </div>
+
+                      <div class="form-group" ng-class="{'has-error' : productForm.productserial.$error.required && !productForm.productserial.$pristine}">
+                        <label for="pn" class="col-sm-2 control-label">Product Serial Number</label>
+                        <div class="col-sm-8">
+                            <input type="text" id="productserial" name = "productserial" class="form-control" placeholder="Please enter your product serial number,which is the most important!!" ng-model="productSerial" ng-required="true">
+                            <span ng-show="productForm.productserial.$error.required && !productForm.productserial.$pristine" class="help-block">Product Serial no could not be null,very important!
+                            </span>
+                        </div>
+                        
+                      </div>
+
+                      <div class="form-group" ng-class="{'has-error' : productForm.productrefno.$error.required && !productForm.productrefno.$pristine}">
+                        <label for="pn" class="col-sm-2 control-label">Prodcut Reference No*</label>
+                        <div class="col-sm-8">
+                            <input type="text" id="productrefno" name = "productrefno" class="form-control" placeholder="Please enter your product reference number" ng-model="productReferenceNo" ng-required="true">
+                            <span ng-show="productForm.productrefno.$error.required && !productForm.productrefno.$pristine" class="help-block">Product reference no could not be null
+                            </span>
+                        </div>
+                        
+                      </div>
+                      
+                      <div class="form-group" ng-class="{'has-error' : productForm.productcontract.$error.required && !productForm.productcontract.$pristine}">
+                            <label for="description" class="col-sm-2 control-label">Product ContractNo *
+                            </label>
+                            <div class="col-sm-8">
+                                <input type="text" id="productcontract" name = "productcontract" class="form-control" placeholder="Please enter your product contract number" ng-model="productContract" ng-required="true">
+                                <span ng-show="productForm.productcontract.$error.required && !productForm.productcontract.$pristine" class="help-block">Product contract no could not be null</span>
+                            </div>
+                            
+                      </div>
+                      <div class="form-group" ng-class="{'has-error' : productForm.contractbegin.$error.required && !productForm.contractbegin.$pristine}">
+                            <label for="description" class="col-sm-2 control-label">Contract Begin Date
+                            </label>
+                            <div class="col-sm-8">
+                                <input  class="form-control" id="contractbegin" name = "contractbegin" placeholder="Please enter your contract begin date" ng-model="contractbegin" ng-required="true">
+                                <span ng-show="productForm.contractbegin.$error.required && !productForm.contractbegin.$pristine" class="help-block">Product contract begin date could not be null</span>
+                            </div>
+                            
+                      </div>
+                      <div class="form-group" ng-class="{'has-error' : productForm.contractend.$error.required && !productForm.contractend.$pristine}">
+                            <label for="description" class="col-sm-2 control-label">Contract End Date
+                            </label>
+                            <div class="col-sm-8">
+                                <input type="text" id="contractend" name = "contractend" class="form-control" placeholder="Please enter your contract end date" ng-model="contractend" ng-required="true">
+                                <span ng-show="productForm.contractend.$error.required && !productForm.contractend.$pristine" class="help-block">Product contract end date could not be null, very importart!</span>
+                            </div>
+                            
+                      </div>
+                      <div class="form-group" ng-class="{'has-error' : productForm.productpart.$error.required && !productForm.productpart.$pristine}">
+                            <label for="description" class="col-sm-2 control-label">Product Part Number
+                            </label>
+                            <div class="col-sm-8">
+                                <input type="text" id="productpart" name = "productpart" class="form-control" placeholder="Please enter your product part number" ng-model="productPartNo" ng-required="true">
+                                <span ng-show="productForm.productpart.$error.required && !productForm.productpart.$pristine" class="help-block">Product product part no could not be null</span>
+                            </div>
+                            
+                      </div>
+
+                      <div class="form-group">
+                            <label for="description" class="col-sm-2 control-label">Product Description
+                            </label>
+                            <div class="col-sm-8" ng-class="{'has-error' : productForm.productdescription.$error.required && !productForm.productdescription.$pristine}">
+                                <input type="text" id="productdescription" name = "productdescription" class="form-control" placeholder="Please enter your product description" ng-model="productDescription" ng-required="true">
+                                 <span ng-show="productForm.productdescription.$error.required && !productForm.productdescription.$pristine" class="help-block">Product product description could not be null</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-offset-2 col-sm-10">
+                                <button type="submit" class="btn btn-default" ng-disabled="productForm.$invalid">Add Product</button>
+
+                                <a ui-sref="app.browse" class="btn btn-default">Browse Current Products</a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!-- /#page-content-wrapper -->

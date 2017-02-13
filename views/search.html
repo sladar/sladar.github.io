@@ -1,0 +1,98 @@
+        <ol class="breadcrumb">
+          <li><a ui-sref="app">Home</a></li>
+          <li class="active"><a ui-sref="app.search">Search product</a></li>
+        </ol>
+
+        <!-- Page Content -->
+        <div id="page-content-wrapper" ng-controller="productController">
+            <div class="container-fluid">
+                <div class="row">
+                    <h3>Search</h3>
+                    <hr>
+                    <form class="form-horizontal" name="productForm">
+
+                     <div class="form-group">
+                        <label for="washroom" class="col-sm-2 control-label"> Serial Number</label>
+                        <div class="col-sm-8">
+                            <div class="input-group">
+                                <span class="input-group-addon glyphicon glyphicon-search" id="basic-addon1">
+                                </span>
+                                <input type="text" class="form-control" placeholder="Search for product" ng-model="productSerialQuery" ng-required="true">
+                            </div>
+                        </div>
+                      </div>
+
+                      <div class="form-group">
+                        <label for="washroom" class="col-sm-2 control-label"> Brand</label>
+                        <div class="col-sm-8">
+                            <div class="input-group">
+                                <span class="input-group-addon glyphicon glyphicon-search" id="basic-addon1">
+                                </span>
+                                <select class="form-control" id="productbrand" name = "productbrand" ng-model="productBrandQuery" ng-options="b.value as b.label for b in brand">
+                                    <option value="">No brand selected</option>
+                                </select>
+                            </div>
+                        </div>
+                      </div>
+
+                      <div class="form-group">
+                        <label for="washroom" class="col-sm-2 control-label"> Model</label>
+                        <div class="col-sm-8">
+                            <div class="input-group">
+                                <span class="input-group-addon glyphicon glyphicon-search" id="basic-addon1">
+                                </span>
+                                <input type="text" class="form-control" placeholder="Search for product Model" ng-model="productModelQuery" ng-required="true">
+                            </div>
+                        </div>
+                      </div>
+
+                      <div class="form-group">
+                        <label for="washroom" class="col-sm-2 control-label"> Contract</label>
+                        <div class="col-sm-8">
+                            <div class="input-group">
+                                <span class="input-group-addon glyphicon glyphicon-search" id="basic-addon1">
+                                </span>
+                                <input type="text" class="form-control" placeholder="Search for product contract number" ng-model="productContractQuery" ng-required="true">
+                            </div>
+                        </div>
+                      </div>
+                      
+                    </form>
+                </div>
+            </div>
+
+            <hr>
+            <div class="row">
+                <table class="table table-bordered">
+                      <tr>
+                        <th> Brand</th> 
+                        <th> Model</th>
+                        <th> Serial</th>
+                        <th> Contract No</th>
+                        <th> Part No</th>
+                        <th> Purchaser</th>
+                        <th> Owner</th>
+                        <th> Description</th>
+                        <th> ContractEnd</th>
+                        <th> Image</th>
+                      </tr>
+                      <tr ng-repeat = "product in products | filter:{productserial: productSerialQuery,productmodel: productModelQuery, productbrand:productBrandQuery,productcontract:productContractQuery}">
+                        <th>{{product.productbrand}}</th>  
+                        <th>{{product.productmodel}}</th> 
+                        <th>{{product.productserial}}</th>
+                        <th>{{product.productcontract}}</th>
+                        <th>{{product.productpart}}</th>
+                        <th>{{product.productpurchaser}}</th>
+                        <th>{{product.productowner}}</th>
+                        <th>{{product.productdescription}}</th>
+                        <th>{{product.contractenddate}}</th>
+                        <th ng-repeat = "(key,i) in product.images">
+                            <img class="productimage" src={{i.imageUrl}}>
+                        </th>
+                      </tr>
+                </table>
+            </div>
+        </div>
+        <!-- /#page-content-wrapper -->
+
+ 
